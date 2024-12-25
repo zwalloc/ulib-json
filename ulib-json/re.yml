@@ -1,0 +1,10 @@
+type: static-library
+name: ulib-json
+
+deps:
+  - github:zwalloc/ulib ^1.0.0
+  - github:zwalloc/fops ^1.0.0
+
+
+# cxxenv.clang.cl:
+#   cxx-standard: 20

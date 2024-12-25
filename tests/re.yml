@@ -1,0 +1,36 @@
+type: executable
+name: .tests
+
+load-context.!standalone:
+  enabled: false
+
+platform.windows:
+  deps:
+    - vcpkg:gtest @ static-md
+
+platform.!windows:
+  deps:
+    - vcpkg:gtest
+
+deps:
+  - ulib-json
+
+cxxenv.msvc:
+  cxx-build-flags:
+    compiler:
+      - "/utf-8"
+    linker:
+      - "/DEBUG"
+  config.release:
+    cxx-build-flags:
+      compiler:
+        - "/GL /O2 /Oi /Gy"
+      linker:
+        - "/LTCG /OPT:REF /OPT:ICF"
+
+platform.linux|osx:
+  cxx-global-link-deps:
+    - pthread
+
+cxxenv.clang.cl:
+  cxx-standard: 20
